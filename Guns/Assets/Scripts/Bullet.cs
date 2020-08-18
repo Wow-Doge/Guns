@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Guns guns;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         Destroy(gameObject, 1f);
@@ -18,6 +17,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+       if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(guns.damage);
+            Destroy(gameObject);
+        }
     }
 }
