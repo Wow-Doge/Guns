@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53afde75032449d4890adb1d5dbfa64a, type: 3}
-  m_Name: rifle
+  m_Name: M4A1
   m_EditorClassIdentifier: 
-  gunName: rifle
-  ammo: 2
-  damage: 3
+  gunType: 1
+  gunName: M4A1
+  ammo: 30
+  damage: 5
+  bulletSpeed: 15
+  rateOfFire: 15
+  reloadTime: 2

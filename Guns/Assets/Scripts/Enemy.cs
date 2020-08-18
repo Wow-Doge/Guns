@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
         curHP = maxHP;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (curHP <= 0)
@@ -23,5 +22,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         curHP -= damage;
+        Debug.Log(gameObject.name + " HP: " + curHP);
     }
 }

@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Guns guns;
+    float damage;
     void Start()
     {
-        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Shooting shooting = player.GetComponent<Shooting>();
+        damage = shooting.damage;
     }
 
     void Update()
     {
+        
         Destroy(gameObject, 1f);
     }
 
@@ -19,7 +22,7 @@ public class Bullet : MonoBehaviour
     {
        if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(guns.damage);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }
