@@ -12,7 +12,9 @@ public class Shooting : MonoBehaviour
     bool isReloading;
     float nextTimeToFire = 0f;
 
+    [HideInInspector]
     public float damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,9 +51,26 @@ public class Shooting : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb2d = bullet.GetComponent<Rigidbody2D>();
-        rb2d.AddForce(firePoint.up * guns.bulletSpeed, ForceMode2D.Impulse);
+        switch (guns.gunType)
+        {
+            case Guns.GunType.Rifle:
+                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                Rigidbody2D rb2d = bullet.GetComponent<Rigidbody2D>();
+                rb2d.AddForce(firePoint.up * guns.bulletSpeed, ForceMode2D.Impulse);
+                break;
+            case Guns.GunType.Pistol:
+                Debug.Log("Pistol");
+                break;
+            case Guns.GunType.Shotgun:
+                Debug.Log("Shotgun");
+                break;
+            case Guns.GunType.Rocket:
+                Debug.Log("Rocket");
+                break;
+
+        }
+        
+        //rb2d.AddForce((firePoint.up + firePoint.right) * guns.bulletSpeed, ForceMode2D.Impulse);
         ammo -= 1;
     }
 

@@ -12,7 +12,7 @@ public class Guns : ScriptableObject
         Rifle,
         Pistol,
         Rocket
-    }
+    };
     public string gunName;
     public float ammo;
     public float damage;
