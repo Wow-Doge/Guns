@@ -8,7 +8,8 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
 
     public Guns guns;
-    float ammo;
+    [HideInInspector]
+    public float ammo;
     bool isReloading;
     float nextTimeToFire = 0f;
 
@@ -47,6 +48,18 @@ public class Shooting : MonoBehaviour
             StartCoroutine(Reload());
             return;
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            guns.gunType = Guns.GunType.Rifle;
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            guns.gunType = Guns.GunType.Shotgun;
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            guns.gunType = Guns.GunType.Pistol;
+        }
     }
 
     void Shoot()
@@ -54,23 +67,29 @@ public class Shooting : MonoBehaviour
         switch (guns.gunType)
         {
             case Guns.GunType.Rifle:
+            case Guns.GunType.Pistol:
                 GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 Rigidbody2D rb2d = bullet.GetComponent<Rigidbody2D>();
                 rb2d.AddForce(firePoint.up * guns.bulletSpeed, ForceMode2D.Impulse);
                 break;
-            case Guns.GunType.Pistol:
-                Debug.Log("Pistol");
-                break;
             case Guns.GunType.Shotgun:
-                Debug.Log("Shotgun");
+                GameObject bullet2 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                Rigidbody2D rb2d2 = bullet2.GetComponent<Rigidbody2D>();
+                rb2d2.AddForce((firePoint.up + firePoint.up) * guns.bulletSpeed, ForceMode2D.Impulse);
+                GameObject bullet3 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                Rigidbody2D rb2d3 = bullet3.GetComponent<Rigidbody2D>();
+                rb2d3.AddForce((firePoint.up + -firePoint.right) * guns.bulletSpeed, ForceMode2D.Impulse);
+                GameObject bullet4 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                Rigidbody2D rb2d4 = bullet4.GetComponent<Rigidbody2D>();
+                rb2d4.AddForce((firePoint.up + firePoint.right) * guns.bulletSpeed, ForceMode2D.Impulse);
                 break;
             case Guns.GunType.Rocket:
                 Debug.Log("Rocket");
                 break;
+            default:
+                break;
 
         }
-        
-        //rb2d.AddForce((firePoint.up + firePoint.right) * guns.bulletSpeed, ForceMode2D.Impulse);
         ammo -= 1;
     }
 
