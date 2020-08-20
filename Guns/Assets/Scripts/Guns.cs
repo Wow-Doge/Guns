@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "New Gun")]
 public class Guns : ScriptableObject
 {
+    public int gunID;
+
     public GunType gunType;
     public enum GunType
     {
@@ -13,6 +15,9 @@ public class Guns : ScriptableObject
         Pistol,
         Rocket
     };
+
+    public Sprite sprite;
+
     public string gunName;
     public float ammo;
     public float damage;

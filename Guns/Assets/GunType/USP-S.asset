@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53afde75032449d4890adb1d5dbfa64a, type: 3}
   m_Name: USP-S
   m_EditorClassIdentifier: 
+  gunID: 3
   gunType: 2
+  sprite: {fileID: 2912464402848211330, guid: 02f58c791f4c2654286fbc82ccedec91, type: 3}
   gunName: USP-S
   ammo: 12
   damage: 3
