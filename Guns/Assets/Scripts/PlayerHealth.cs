@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth = 20f;
-    float curHealth;
+    private float curHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +16,13 @@ public class PlayerHealth : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            curHealth -= 2;
+        }
     }
 }
