@@ -16,11 +16,9 @@ public class Shooting : MonoBehaviour
     [HideInInspector]
     public float damage;
     PlayerInventory playerInventory;
-    // Start is called before the first frame update
     void Start()
     {
         playerInventory = GetComponent<PlayerInventory>();
-        ammo = guns.ammo;
         damage = guns.damage;
     }
 
@@ -29,7 +27,6 @@ public class Shooting : MonoBehaviour
         isReloading = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         spriteRenderer.sprite = guns.sprite;
@@ -43,6 +40,7 @@ public class Shooting : MonoBehaviour
             {
                 nextTimeToFire = Time.time + 1f / guns.rateOfFire;
                 Shoot();
+                ammo -= 1;
             }
         }
         if (ammo <= 0)
@@ -53,14 +51,34 @@ public class Shooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             guns = playerInventory.guns[0];
+            GunAmmo();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             guns = playerInventory.guns[1];
+            GunAmmo();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             guns = playerInventory.guns[2];
+            GunAmmo();
+        }
+    }
+    public void GunAmmo()
+    {
+        switch(guns.gunType)
+        {
+            case Guns.GunType.Rifle:
+                ammo = guns.ammo;
+                break;
+            case Guns.GunType.Shotgun:
+                ammo = guns.ammo;
+                break;
+            case Guns.GunType.Pistol:
+                ammo = guns.ammo;
+                break;
+            default:
+                break;
         }
     }
 
@@ -92,7 +110,6 @@ public class Shooting : MonoBehaviour
                 break;
 
         }
-        ammo -= 1;
     }
 
     IEnumerator Reload()

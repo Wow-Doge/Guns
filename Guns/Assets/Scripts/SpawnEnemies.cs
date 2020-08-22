@@ -7,33 +7,30 @@ public class SpawnEnemies : MonoBehaviour
 {
     public GameObject[] enemies;
     Vector2 spawnposition;
-    Transform areaTransform;
-    void Start()
-    {
-        areaTransform = GetComponent<Transform>();
-    }
-
-    void Update()
-    {
-
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            SpawnEnemy();
+            StartCoroutine(WaveSpawn());
         }
     }
-
+    IEnumerator WaveSpawn()
+    {
+        yield return new WaitForSeconds(2f);
+        SpawnEnemy();
+        yield return new WaitForSeconds(2f);
+        SpawnEnemy();
+        yield return new WaitForSeconds(2f);
+        SpawnEnemy();
+    }
     void SpawnEnemy()
     {
-        foreach(GameObject enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
-            spawnposition.x = Random.Range(areaTransform.position.x - 5, areaTransform.position.x + 5);
-            spawnposition.y = Random.Range(areaTransform.position.x - 5, areaTransform.position.y + 5);
+            spawnposition.x = Random.Range(transform.position.x - 10, transform.position.x + 10);
+            spawnposition.y = Random.Range(transform.position.y - 4, transform.position.y + 4);
             spawnposition = new Vector2(spawnposition.x, spawnposition.y);
             Instantiate(enemy, spawnposition, Quaternion.identity);
         }
-        Debug.Log("Do something");
     }
 }
