@@ -14,7 +14,6 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        
         Destroy(gameObject, 1f);
     }
 
@@ -24,6 +23,11 @@ public class Bullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
             Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

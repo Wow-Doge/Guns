@@ -9,6 +9,9 @@ public class RangeProjectile : MonoBehaviour
     Vector2 target;
     Vector2 bulletPos;
     Rigidbody2D rb2d;
+    [SerializeField]
+    private float speed = 10f;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -19,8 +22,7 @@ public class RangeProjectile : MonoBehaviour
 
     void Update()
     {
-        //rb2d.position = Vector2.MoveTowards(rb2d.position, target, speed * Time.deltaTime);
-        rb2d.AddForce((target - bulletPos) * Time.deltaTime, ForceMode2D.Impulse);
+        rb2d.AddForce((target - bulletPos).normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
         Destroy(gameObject, 2);
     }
 

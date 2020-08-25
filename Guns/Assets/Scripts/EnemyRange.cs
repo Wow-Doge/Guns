@@ -9,7 +9,6 @@ public class EnemyRange : MonoBehaviour
     public float fireRate = 2f;
     float nextFire;
 
-    public float speed = 5f;
     void Start()
     {
         nextFire = fireRate;
