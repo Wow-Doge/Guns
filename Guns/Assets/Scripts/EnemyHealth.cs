@@ -22,6 +22,6 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         curHP -= damage;
-        Debug.Log(gameObject.name + " HP: " + curHP);
+        //Debug.Log(gameObject.name + " HP: " + curHP);
     }
 }
