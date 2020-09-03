@@ -9,76 +9,43 @@ public class Shooting : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Guns guns;
     [HideInInspector]
-    public float ammo;
-    bool isReloading;
     float nextTimeToFire = 0f;
 
     [HideInInspector]
     public float damage;
     PlayerInventory playerInventory;
+    PlayerEnergy playerEnergy;
     void Start()
     {
         playerInventory = GetComponent<PlayerInventory>();
+        playerEnergy = GetComponent<PlayerEnergy>();
         damage = guns.damage;
     }
-
-    void OnEnable()
-    {
-        isReloading = false;
-    }
-
     void Update()
     {
         spriteRenderer.sprite = guns.sprite;
-        if (isReloading)
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
-            return;
+            nextTimeToFire = Time.time + 1f / guns.rateOfFire;
+            Shoot();
+            playerEnergy.curEnergy -= guns.energyCost;
         }
-        if (ammo > 0)
-        {
-            if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
-            {
-                nextTimeToFire = Time.time + 1f / guns.rateOfFire;
-                Shoot();
-                ammo -= 1;
-            }
-        }
-        if (ammo <= 0)
-        {
-            StartCoroutine(Reload());
-            return;
-        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             guns = playerInventory.guns[0];
-            GunAmmo();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             guns = playerInventory.guns[1];
-            GunAmmo();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             guns = playerInventory.guns[2];
-            GunAmmo();
         }
-    }
-    public void GunAmmo()
-    {
-        switch(guns.gunType)
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            case Guns.GunType.Rifle:
-                ammo = guns.ammo;
-                break;
-            case Guns.GunType.Shotgun:
-                ammo = guns.ammo;
-                break;
-            case Guns.GunType.Pistol:
-                ammo = guns.ammo;
-                break;
-            default:
-                break;
+            guns = playerInventory.guns[3];
         }
     }
 
@@ -108,15 +75,6 @@ public class Shooting : MonoBehaviour
                 break;
             default:
                 break;
-
         }
-    }
-
-    IEnumerator Reload()
-    {
-        isReloading = true;
-        yield return new WaitForSeconds(guns.reloadTime);
-        ammo = guns.ammo;
-        isReloading = false;
     }
 }

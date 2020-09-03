@@ -16,8 +16,7 @@ MonoBehaviour:
   gunType: 1
   sprite: {fileID: 6321443046475953421, guid: 02f58c791f4c2654286fbc82ccedec91, type: 3}
   gunName: M4A1
-  ammo: 30
   damage: 5
   bulletSpeed: 20
   rateOfFire: 15
-  reloadTime: 2
+  energyCost: 2

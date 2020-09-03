@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
     Vector2 mousePos;
 
     public Camera cam;
+    private void Awake()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {

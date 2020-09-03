@@ -16,8 +16,7 @@ MonoBehaviour:
   gunType: 0
   sprite: {fileID: 1098179606456428539, guid: 02f58c791f4c2654286fbc82ccedec91, type: 3}
   gunName: Spaz
-  ammo: 8
   damage: 10
   bulletSpeed: 30
   rateOfFire: 5
-  reloadTime: 3
+  energyCost: 4

@@ -6,19 +6,14 @@ public class PlayerHealth : MonoBehaviour, Idamageable
 {
     public float maxHealth = 20f;
     public float curHealth;
-    // Start is called before the first frame update
     void Start()
     {
         curHealth = maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.T))
-        //{
-        //    curHealth -= 2;
-        //}
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

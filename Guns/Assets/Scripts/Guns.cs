@@ -13,16 +13,15 @@ public class Guns : ScriptableObject
         Shotgun,
         Rifle,
         Pistol,
-        Rocket
-    };
+        Rocket,
+        Melee
+    }
 
     public Sprite sprite;
-
     public string gunName;
-    public float ammo;
     public float damage;
     public float bulletSpeed;
     public float rateOfFire;
-    public float reloadTime;
-
+    public float energyCost;
+    //public GameObject bullet;
 }

@@ -16,8 +16,7 @@ MonoBehaviour:
   gunType: 2
   sprite: {fileID: 2912464402848211330, guid: 02f58c791f4c2654286fbc82ccedec91, type: 3}
   gunName: USP-S
-  ammo: 12
   damage: 3
   bulletSpeed: 25
   rateOfFire: 8
-  reloadTime: 1
+  energyCost: 0
