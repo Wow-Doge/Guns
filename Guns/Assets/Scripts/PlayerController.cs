@@ -11,17 +11,11 @@ public class PlayerController : MonoBehaviour
     Vector2 mousePos;
 
     public Camera cam;
-    private void Awake()
-    {
-        
-    }
-    // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxis("Horizontal");
@@ -30,7 +24,6 @@ public class PlayerController : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
     }
-
     private void FixedUpdate()
     {
         rb2d.MovePosition(rb2d.position + movement * speed * Time.fixedDeltaTime);

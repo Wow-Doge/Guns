@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "New Gun")]
+[CreateAssetMenu(menuName = "New Weapon")]
 public class Guns : ScriptableObject
 {
     public int gunID;

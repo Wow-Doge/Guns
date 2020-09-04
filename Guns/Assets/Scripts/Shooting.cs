@@ -27,7 +27,7 @@ public class Shooting : MonoBehaviour
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / guns.rateOfFire;
-            Shoot();
+            Attack();
             playerEnergy.curEnergy -= guns.energyCost;
         }
 
@@ -49,32 +49,44 @@ public class Shooting : MonoBehaviour
         }
     }
 
-    void Shoot()
+    void Attack()
     {
         switch (guns.gunType)
         {
             case Guns.GunType.Rifle:
             case Guns.GunType.Pistol:
-                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-                Rigidbody2D rb2d = bullet.GetComponent<Rigidbody2D>();
-                rb2d.AddForce(firePoint.up * guns.bulletSpeed, ForceMode2D.Impulse);
+                Shoot();
                 break;
             case Guns.GunType.Shotgun:
                 GameObject bullet2 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 Rigidbody2D rb2d2 = bullet2.GetComponent<Rigidbody2D>();
-                rb2d2.AddForce((firePoint.up + firePoint.up) * guns.bulletSpeed, ForceMode2D.Impulse);
+                rb2d2.AddForce((firePoint.up + firePoint.up) / 2 * guns.bulletSpeed, ForceMode2D.Impulse);
                 GameObject bullet3 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 Rigidbody2D rb2d3 = bullet3.GetComponent<Rigidbody2D>();
-                rb2d3.AddForce((firePoint.up + -firePoint.right) * guns.bulletSpeed, ForceMode2D.Impulse);
+                rb2d3.AddForce((firePoint.up + -firePoint.right) / 2 * guns.bulletSpeed, ForceMode2D.Impulse);
                 GameObject bullet4 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 Rigidbody2D rb2d4 = bullet4.GetComponent<Rigidbody2D>();
-                rb2d4.AddForce((firePoint.up + firePoint.right) * guns.bulletSpeed, ForceMode2D.Impulse);
+                rb2d4.AddForce((firePoint.up + firePoint.right) / 2 * guns.bulletSpeed, ForceMode2D.Impulse);
                 break;
             case Guns.GunType.Rocket:
                 Debug.Log("Rocket");
                 break;
+            case Guns.GunType.Melee:
+                Swing();
+                break;
             default:
                 break;
         }
+    }
+    public void Swing()
+    {
+        
+    }
+
+    public void Shoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb2d = bullet.GetComponent<Rigidbody2D>();
+        rb2d.AddForce(firePoint.up * guns.bulletSpeed, ForceMode2D.Impulse);
     }
 }
