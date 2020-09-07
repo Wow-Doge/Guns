@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53afde75032449d4890adb1d5dbfa64a, type: 3}
-  m_Name: Spaz
+  m_Name: USP-S
   m_EditorClassIdentifier: 
-  gunID: 2
-  gunType: 0
-  sprite: {fileID: 1098179606456428539, guid: 02f58c791f4c2654286fbc82ccedec91, type: 3}
-  gunName: Spaz
-  damage: 10
-  bulletSpeed: 30
-  rateOfFire: 5
-  energyCost: 4
+  gunID: 3
+  gunType: 2
+  sprite: {fileID: 2912464402848211330, guid: 02f58c791f4c2654286fbc82ccedec91, type: 3}
+  gunName: USP-S
+  damage: 3
+  bulletSpeed: 25
+  attackRate: 12
+  energyCost: 0

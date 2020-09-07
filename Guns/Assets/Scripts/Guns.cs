@@ -21,7 +21,6 @@ public class Guns : ScriptableObject
     public string gunName;
     public float damage;
     public float bulletSpeed;
-    public float rateOfFire;
+    public float attackRate;
     public float energyCost;
-    //public GameObject bullet;
 }

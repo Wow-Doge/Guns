@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, Idamageable
 {
     float curHP;
     public float maxHP = 20f;
@@ -22,6 +22,5 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         curHP -= damage;
-        //Debug.Log(gameObject.name + " HP: " + curHP);
     }
 }

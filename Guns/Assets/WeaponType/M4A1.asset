@@ -18,5 +18,5 @@ MonoBehaviour:
   gunName: M4A1
   damage: 5
   bulletSpeed: 20
-  rateOfFire: 15
+  attackRate: 10
   energyCost: 2

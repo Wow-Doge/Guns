@@ -8,8 +8,8 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Shooting shooting = player.GetComponent<Shooting>();
-        damage = shooting.damage;
+        Attacking attacking = player.GetComponent<Attacking>();
+        damage = attacking.damage;
     }
 
     void Update()
@@ -19,10 +19,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        Idamageable damageable = collision.GetComponent<Idamageable>();
+        if (damageable != null)
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-            Destroy(gameObject);
+            damageable.TakeDamage(damage);
         }
         if (collision.gameObject.CompareTag("EnemyProjectile"))
         {

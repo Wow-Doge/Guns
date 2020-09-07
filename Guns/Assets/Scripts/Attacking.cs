@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+public class Attacking : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
     public SpriteRenderer spriteRenderer;
+    public Transform weaponPoint;
     public Guns guns;
     [HideInInspector]
     float nextTimeToFire = 0f;
@@ -15,10 +16,14 @@ public class Shooting : MonoBehaviour
     public float damage;
     PlayerInventory playerInventory;
     PlayerEnergy playerEnergy;
+    Animator animator;
+
+    public LayerMask enemyLayer;
     void Start()
     {
         playerInventory = GetComponent<PlayerInventory>();
         playerEnergy = GetComponent<PlayerEnergy>();
+        animator = GetComponent<Animator>();
         damage = guns.damage;
     }
     void Update()
@@ -26,7 +31,7 @@ public class Shooting : MonoBehaviour
         spriteRenderer.sprite = guns.sprite;
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
-            nextTimeToFire = Time.time + 1f / guns.rateOfFire;
+            nextTimeToFire = Time.time + (1f / guns.attackRate);
             Attack();
             playerEnergy.curEnergy -= guns.energyCost;
         }
@@ -58,18 +63,9 @@ public class Shooting : MonoBehaviour
                 Shoot();
                 break;
             case Guns.GunType.Shotgun:
-                GameObject bullet2 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-                Rigidbody2D rb2d2 = bullet2.GetComponent<Rigidbody2D>();
-                rb2d2.AddForce((firePoint.up + firePoint.up) / 2 * guns.bulletSpeed, ForceMode2D.Impulse);
-                GameObject bullet3 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-                Rigidbody2D rb2d3 = bullet3.GetComponent<Rigidbody2D>();
-                rb2d3.AddForce((firePoint.up + -firePoint.right) / 2 * guns.bulletSpeed, ForceMode2D.Impulse);
-                GameObject bullet4 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-                Rigidbody2D rb2d4 = bullet4.GetComponent<Rigidbody2D>();
-                rb2d4.AddForce((firePoint.up + firePoint.right) / 2 * guns.bulletSpeed, ForceMode2D.Impulse);
+                ShotgunShoot();
                 break;
             case Guns.GunType.Rocket:
-                Debug.Log("Rocket");
                 break;
             case Guns.GunType.Melee:
                 Swing();
@@ -78,15 +74,37 @@ public class Shooting : MonoBehaviour
                 break;
         }
     }
-    public void Swing()
+    void Swing()
     {
-        
+        animator.SetTrigger("MeleeSwing");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(weaponPoint.position, 1.5f, enemyLayer);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Idamageable damageable = enemy.GetComponent<Idamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage);
+            }
+        }
     }
 
-    public void Shoot()
+    void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb2d = bullet.GetComponent<Rigidbody2D>();
         rb2d.AddForce(firePoint.up * guns.bulletSpeed, ForceMode2D.Impulse);
+    }
+
+    void ShotgunShoot()
+    {
+        GameObject bullet2 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb2d2 = bullet2.GetComponent<Rigidbody2D>();
+        rb2d2.AddForce((firePoint.up + firePoint.up) / 2 * guns.bulletSpeed, ForceMode2D.Impulse);
+        GameObject bullet3 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb2d3 = bullet3.GetComponent<Rigidbody2D>();
+        rb2d3.AddForce((firePoint.up + -firePoint.right) / 2 * guns.bulletSpeed, ForceMode2D.Impulse);
+        GameObject bullet4 = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb2d4 = bullet4.GetComponent<Rigidbody2D>();
+        rb2d4.AddForce((firePoint.up + firePoint.right) / 2 * guns.bulletSpeed, ForceMode2D.Impulse);
     }
 }
