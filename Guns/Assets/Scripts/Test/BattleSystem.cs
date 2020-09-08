@@ -11,7 +11,6 @@ public class BattleSystem : MonoBehaviour
     private Wave[] waveArray;
     public BattleTrigger battleTrigger;
     public event EventHandler OnWaveEnd;
-
     private enum State
     {
         Idle,
@@ -86,7 +85,6 @@ public class BattleSystem : MonoBehaviour
         }
         return true;
     }
-
     [System.Serializable]
     private class Wave
     {
@@ -120,7 +118,14 @@ public class BattleSystem : MonoBehaviour
         {
             if (timer < 0)
             {
-                return true;
+                if (GameObject.FindGameObjectWithTag("Enemy") == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
