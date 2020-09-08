@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class EnemyHealth : MonoBehaviour, Idamageable
 {
@@ -18,7 +20,6 @@ public class EnemyHealth : MonoBehaviour, Idamageable
             Destroy(gameObject);
         }
     }
-
     public void TakeDamage(float damage)
     {
         curHP -= damage;

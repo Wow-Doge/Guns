@@ -77,6 +77,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (wave.WaveOver())
             {
+                
             }
             else
             {
