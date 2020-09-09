@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: df8ab8f45f4f4b1428d918e558cef729
+guid: 879a40bdeba642845b428af9768ca05f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - energyDrop: {fileID: 7594275267131631376, guid: 192705be6ba83384897f6356be0a461a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

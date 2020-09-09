@@ -32,8 +32,15 @@ public class Attacking : MonoBehaviour
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + (1f / guns.attackRate);
-            Attack();
-            playerEnergy.curEnergy -= guns.energyCost;
+            if (playerEnergy.curEnergy >= guns.energyCost)
+            {
+                Attack();
+                playerEnergy.curEnergy -= guns.energyCost;     
+            }
+            else
+            {
+                Debug.Log("no energy");
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -51,6 +58,10 @@ public class Attacking : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             guns = playerInventory.guns[3];
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            guns = playerInventory.guns[4];
         }
     }
 

@@ -17,9 +17,7 @@ public class BattleSystem : MonoBehaviour
         Active,
         End,
     }
-
     private State state;
-
     private void Awake()
     {
         state = State.Idle;
@@ -90,8 +88,7 @@ public class BattleSystem : MonoBehaviour
     {
         public float timer;
         public GameObject[] enemies;
-        Vector3 spawnposition;
-        public Transform transform;
+        public Transform[] spawnLocations;
         public void Update()
         {
             if (timer >= 0)
@@ -107,10 +104,8 @@ public class BattleSystem : MonoBehaviour
         {
             foreach (GameObject enemy in enemies)
             {
-                spawnposition.x = UnityEngine.Random.Range(transform.position.x - 5, transform.position.x + 5);
-                spawnposition.y = UnityEngine.Random.Range(transform.position.y - 2, transform.position.y + 2);
-                spawnposition = new Vector3(spawnposition.x, spawnposition.y, transform.position.z);
-                Instantiate(enemy, spawnposition, Quaternion.identity);
+                Transform spawnLocation = spawnLocations[UnityEngine.Random.Range(0, spawnLocations.Length)];
+                Instantiate(enemy, spawnLocation.position, Quaternion.identity);
             }
         }
 

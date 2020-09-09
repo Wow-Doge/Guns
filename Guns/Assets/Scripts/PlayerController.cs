@@ -11,8 +11,11 @@ public class PlayerController : MonoBehaviour
     Vector2 mousePos;
 
     public Camera cam;
+
+    PlayerHealth playerHealth;
     void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -23,7 +26,15 @@ public class PlayerController : MonoBehaviour
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
+        playerHealth.OnDead += PlayerDead;
     }
+
+    private void PlayerDead(object sender, System.EventArgs e)
+    {
+        Debug.Log("Player Dead");
+        //Do some particle effect when dead and restart the game after certain times;
+    }
+
     private void FixedUpdate()
     {
         rb2d.MovePosition(rb2d.position + movement * speed * Time.fixedDeltaTime);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class PlayerHealth : MonoBehaviour, Idamageable
 {
     public float maxHealth = 20f;
     public float curHealth;
+
+    public event EventHandler OnDead;
     void Start()
     {
         curHealth = maxHealth;
@@ -13,7 +16,10 @@ public class PlayerHealth : MonoBehaviour, Idamageable
 
     void Update()
     {
-        
+        if (curHealth <= 0)
+        {
+            OnDead?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6662714156292938513}
   - component: {fileID: 6662714156292938514}
   - component: {fileID: 6662714156292938519}
+  - component: {fileID: -4577059370508587483}
   m_Layer: 9
   m_Name: Ranger
   m_TagString: Enemy
@@ -160,4 +161,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeProjectile: {fileID: 4663761838933576868, guid: 160d560843dbe3a4cabb4223e9559749, type: 3}
   fireRate: 2
-  speed: 5
+--- !u!114 &-4577059370508587483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6662714156292938525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 879a40bdeba642845b428af9768ca05f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyDrop: {fileID: 7594275267131631376, guid: 192705be6ba83384897f6356be0a461a, type: 3}
