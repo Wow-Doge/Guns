@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         playerHealth = GetComponent<PlayerHealth>();
         rb2d = GetComponent<Rigidbody2D>();
+        playerHealth.OnDead += PlayerHealth_OnDead;
     }
 
     void Update()
@@ -25,14 +26,12 @@ public class PlayerController : MonoBehaviour
         movement.y = Input.GetAxis("Vertical");
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        playerHealth.OnDead += PlayerDead;
     }
 
-    private void PlayerDead(object sender, System.EventArgs e)
+    private void PlayerHealth_OnDead(object sender, System.EventArgs e)
     {
-        Debug.Log("Player Dead");
-        //Do some particle effect when dead and restart the game after certain times;
+        //Do something
+        playerHealth.OnDead -= PlayerHealth_OnDead;
     }
 
     private void FixedUpdate()

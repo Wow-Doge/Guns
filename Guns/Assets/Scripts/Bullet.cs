@@ -8,8 +8,8 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Attacking attacking = player.GetComponent<Attacking>();
-        damage = attacking.damage;
+        PlayerAttack playerAttack = player.GetComponent<PlayerAttack>();
+        damage = playerAttack.damage;
     }
 
     void Update()

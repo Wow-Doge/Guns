@@ -6,6 +6,7 @@ public class PlayerEnergy : MonoBehaviour
 {
     public float maxEnergy = 200f;
     public float curEnergy;
+
     void Start()
     {
         curEnergy = maxEnergy;

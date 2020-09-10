@@ -173,4 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879a40bdeba642845b428af9768ca05f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyDrop: {fileID: 7594275267131631376, guid: 192705be6ba83384897f6356be0a461a, type: 3}
+  itemDrops:
+  - {fileID: 7594275267131631376, guid: 192705be6ba83384897f6356be0a461a, type: 3}
+  - {fileID: 3351901384883293611, guid: 08ab047d0c48f744f9723e53d164470e, type: 3}

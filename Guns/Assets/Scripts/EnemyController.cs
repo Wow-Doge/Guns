@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
-        if (Vector2.Distance(target.position, rb2d.position) < 5)
+        if (Vector2.Distance(target.position, rb2d.position) < 20)
         {
             rb2d.position = Vector2.MoveTowards(rb2d.position, target.position, speed * Time.deltaTime);
         }

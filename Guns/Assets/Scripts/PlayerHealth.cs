@@ -9,8 +9,11 @@ public class PlayerHealth : MonoBehaviour, Idamageable
     public float curHealth;
 
     public event EventHandler OnDead;
+
+    PlayerArmor playerArmor;
     void Start()
     {
+        playerArmor = GetComponent<PlayerArmor>();
         curHealth = maxHealth;
     }
 
@@ -26,15 +29,14 @@ public class PlayerHealth : MonoBehaviour, Idamageable
     {
         if (collision.CompareTag("EnemyProjectile"))
         {
-            TakeDamage(2);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            TakeDamage(1);
+            if (playerArmor.curArmor <= 0)
+            {
+                TakeDamage(2);
+            }
+            if (playerArmor.curArmor > 0)
+            {
+                return;
+            }
         }
     }
 

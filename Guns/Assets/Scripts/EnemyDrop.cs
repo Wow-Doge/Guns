@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyDrop : MonoBehaviour
 {
     [SerializeField]
-    private GameObject energyDrop;
+    private GameObject[] itemDrops;
 
     EnemyHealth enemyHealth;
     private void Start()
@@ -16,7 +16,6 @@ public class EnemyDrop : MonoBehaviour
 
     private void EnemyDropWhenDead(object sender, System.EventArgs e)
     {
-        Debug.Log("Drop something");
-        //Drop xyz.....
+        Instantiate(itemDrops[UnityEngine.Random.Range(0, itemDrops.Length)], transform.position, Quaternion.identity);
     }
 }
